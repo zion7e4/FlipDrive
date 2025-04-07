@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      touring-full_0: -1507207866743477195
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
