@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      off-road-full_0: -6610978876327191364
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

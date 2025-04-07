@@ -418,6 +418,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 2856700496123390873, guid: ed41b5e9f627ca54e93cb2dfdb97725a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
+    - target: {fileID: 4468968363385380455, guid: ed41b5e9f627ca54e93cb2dfdb97725a, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 5024635686413179824, guid: ed41b5e9f627ca54e93cb2dfdb97725a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1723,6 +1731,14 @@ PrefabInstance:
     - target: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       propertyPath: m_Name
       value: Car
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961636230564367585, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      propertyPath: rotationForce
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 2961636230564367585, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      propertyPath: maxRotationSpeed
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 6562381117644540611, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       propertyPath: m_LocalPosition.x

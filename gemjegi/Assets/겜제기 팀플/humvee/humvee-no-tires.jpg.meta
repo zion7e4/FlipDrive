@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      humvee-no-tires_0: 1284267033748389968
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

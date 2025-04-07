@@ -172,7 +172,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      enduro-full_0: 9197945498487242390
+      enduro-full_1: 4222461018314073695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
