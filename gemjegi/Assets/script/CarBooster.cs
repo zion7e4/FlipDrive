@@ -26,7 +26,7 @@ public class CarBooster : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.LeftShift) && boosterGauge > 0)
+        if(Input.GetKey(KeyCode.LeftShift) && boosterGauge > 0)
         {
             UseBoost();
         }
@@ -48,19 +48,19 @@ public class CarBooster : MonoBehaviour
     {
         if (boosterGauge >= 15)
         {
-            return boosterAcc * 1.5f;
+            return boosterAcc * 1.8f;
         }
         else if (boosterGauge >= 10)
         {
-            return boosterAcc * 1.2f;
+            return boosterAcc * 1.6f;
         }
         else if (boosterGauge >= 5)
         {
-            return boosterAcc * 1.1f;
+            return boosterAcc * 1.4f;
         }
         else
         {
-            return boosterAcc * 1.0f;
+            return boosterAcc * 1.2f;
         }
     }
 }
