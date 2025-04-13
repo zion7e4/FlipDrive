@@ -20,6 +20,10 @@ public class carmovement : MonoBehaviour
     public float currentMotorSpeed = 0f;
     public bool isBoosting = false;
 
+    private float boostMultiplier = 1f; // 기본 속도 배율
+    private float targetMultiplier = 1f; // 목표 속도 배율
+    private float multiplierRestoreSpeed = 0.5f; // 배율 복원 속도 (초당 감소량)
+
     private void Start()
     {
         if (carBooster == null)
@@ -34,26 +38,18 @@ public class carmovement : MonoBehaviour
 
         if (accelerating)
         {
-            currentMotorSpeed += accelerationRate * Time.deltaTime;
-            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed);
+            currentMotorSpeed += accelerationRate * Time.deltaTime * boostMultiplier;
+            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed * boostMultiplier);
         }
         else
         {
             currentMotorSpeed = Mathf.MoveTowards(currentMotorSpeed, 0f, decelerationRate * Time.deltaTime);
         }
 
-        if (isBoosting)
+        if (!isBoosting && boostMultiplier > 1f)
         {
-            // 부스트 시 최대 속도 제한 해제
-            maxTorque = 8000f + -carBooster.CalBoostAmount();
-            maxMotorSpeed = -5000f + carBooster.CalBoostAmount();
-            currentMotorSpeed += carBooster.CalBoostAmount() * Time.deltaTime;
-        }
-        else
-        {
-            // 부스트 종료 후 원래의 최대 속도로 복원
-            maxMotorSpeed = -5000f;
-            maxTorque = 8000f;
+            // 배율을 천천히 1로 복원
+            boostMultiplier = Mathf.MoveTowards(boostMultiplier, targetMultiplier, multiplierRestoreSpeed * Time.deltaTime);
         }
 
         ApplyMotor(currentMotorSpeed);
@@ -73,5 +69,14 @@ public class carmovement : MonoBehaviour
         frontWheelJoint.useMotor = true;
         backWheelJoint.useMotor = true;
     }
-}
 
+    public void ApplyBoostMultiplier(float multiplier)
+    {
+        boostMultiplier = multiplier;
+    }
+
+    public void ResetBoostMultiplier()
+    {
+        isBoosting = false; // 부스터 종료 상태로 설정
+    }
+}

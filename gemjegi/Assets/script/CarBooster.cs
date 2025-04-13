@@ -1,34 +1,40 @@
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class CarBooster : MonoBehaviour
 {
     public carmovement carMovement;
 
     [SerializeField]
-    private float boosterGauge = 20f; //부스터 게이지
+    private float boosterGauge = 20f; // 현재 부스터 게이지
     [SerializeField]
-    private float maxboosterGauge = 20f; //최대 부스터 게이지
-    [SerializeField]
-    private float boosterAcc = -8000f; //기본 부스터 가속도
+    private float maxboosterGauge = 20f; // 최대 부스터 게이지
+    private float gaugeConsumption; // 게이지 소모량
+    private float speedMultiplier; // 속도 배율
+    private float boostDuration; // 부스터 지속 시간
 
-    private float gaugeConsumption = 3f; //초당 부스터 게이지 소모량
+    private bool isBoostActive = false; // 부스터 활성화 상태
+    private float boostEndTime; // 부스터 종료 시간 (Time.time)
 
-
-    private void Start()
+    private void Awake()
     {
-        if (carMovement == null)
-        {
-            carMovement = GetComponent<carmovement>();
-        }
+        carMovement = GetComponent<carmovement>();
     }
 
     private void Update()
     {
-        if(Input.GetKey(KeyCode.LeftShift) && boosterGauge > 0)
+        if (Input.GetKey(KeyCode.LeftShift) && boosterGauge > 0 && !isBoostActive)
         {
-            UseBoost();
+            // 부스터 등급 결정
+            DetermineBoostTier();
+        }
+
+        if (isBoostActive)
+        {
+            if (Time.time >= boostEndTime)
+            {
+                // 부스터 종료
+                EndBoost();
+            }
         }
         else
         {
@@ -36,31 +42,62 @@ public class CarBooster : MonoBehaviour
         }
     }
 
-    private void UseBoost() //부스터 사용
+    private void DetermineBoostTier()
     {
-        boosterGauge -= gaugeConsumption * Time.deltaTime;
-        boosterGauge = Mathf.Max(boosterGauge, 0f);
+        float gaugePercent = (boosterGauge / maxboosterGauge) * 100f;
 
-        carMovement.isBoosting = true;
+        if (gaugePercent >= 100f)
+        {
+            // 특대형
+            ActivateBoost(100f, 1.8f, 2.5f);
+        }
+        else if (gaugePercent >= 75f)
+        {
+            // 대형
+            ActivateBoost(75f, 1.6f, 2f);
+        }
+        else if (gaugePercent >= 50f)
+        {
+            // 중형
+            ActivateBoost(50f, 1.4f, 1.5f);
+        }
+        else if (gaugePercent >= 25f)
+        {
+            // 소형
+            ActivateBoost(25f, 1.2f, 1f);
+        }
     }
 
-    public float CalBoostAmount() //게이지 양에 따른 추가 부스터 가속도 계산
+    private void ActivateBoost(float consumptionPercent, float multiplier, float duration)
     {
-        if (boosterGauge >= 15)
+        gaugeConsumption = (consumptionPercent / 100f) * maxboosterGauge;
+        speedMultiplier = multiplier;
+        boostDuration = duration;
+
+        if (boosterGauge >= gaugeConsumption)
         {
-            return boosterAcc * 1.8f;
+            // 게이지를 소모하고 부스터 활성화
+            boosterGauge -= gaugeConsumption;
+            isBoostActive = true;
+            boostEndTime = Time.time + boostDuration;
+            carMovement.isBoosting = true;
+
+            // 속도 배율 적용
+            carMovement.ApplyBoostMultiplier(speedMultiplier);
         }
-        else if (boosterGauge >= 10)
-        {
-            return boosterAcc * 1.6f;
-        }
-        else if (boosterGauge >= 5)
-        {
-            return boosterAcc * 1.4f;
-        }
-        else
-        {
-            return boosterAcc * 1.2f;
-        }
+    }
+
+    private void EndBoost()
+    {
+        isBoostActive = false;
+        carMovement.isBoosting = false;
+
+        // 속도 배율 해제
+        carMovement.ResetBoostMultiplier();
+    }
+
+    public float GetCurrentGaugePercent()
+    {
+        return (boosterGauge / maxboosterGauge) * 100f;
     }
 }
