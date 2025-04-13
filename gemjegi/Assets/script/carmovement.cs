@@ -21,7 +21,7 @@ public class carmovement : MonoBehaviour
     [SerializeField] private float currentAngularVelocity = 0f; // 현재 회전 속도
 
     private Rigidbody2D rb;
-    private bool isGrounded = false; // 지면에 닿았는지 여부
+    public bool isGrounded = false; // 지면에 닿았는지 여부
 
     void Start()
     {
