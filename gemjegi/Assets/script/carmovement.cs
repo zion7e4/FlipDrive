@@ -14,11 +14,21 @@ public class carmovement : MonoBehaviour
     public float accelerationRate = -5000f;
     public float decelerationRate = 1000f;
     public float maxTorque = 8000f;
+    public float rotationForce = 200f; // 회전력
+    public float maxRotationSpeed = 300f; // 최대 회전 속도
 
     [Header("Debug Info")]
     [Tooltip("현재 모터 회전 속도 (음수일수록 빠름)")]
     public float currentMotorSpeed = 0f;
+    [SerializeField] 
+    private float currentAngularVelocity = 0f; // 현재 회전 속도
     public bool isBoosting = false;
+
+    private Rigidbody2D rb;
+
+    public bool isOnGround;
+    public isGroundCheck wheelLeft;
+    public isGroundCheck wheelRight;
 
     private float boostMultiplier = 1f; // 기본 속도 배율
     private float targetMultiplier = 1f; // 목표 속도 배율
@@ -26,20 +36,28 @@ public class carmovement : MonoBehaviour
 
     private void Start()
     {
-        if (carBooster == null)
-        {
-            carBooster = GetComponent<CarBooster>();
-        }
+        carBooster = GetComponent<CarBooster>();
+        rb = GetComponent<Rigidbody2D>();
+        rb.freezeRotation = false; // 회전 가능하도록 설정
+        rb.centerOfMass = new Vector2(0.1f, -0.6f); // 차량의 중심을 아래로 설정
     }
 
     void Update()
     {
+        isOnGround = wheelLeft.isGrounded || wheelRight.isGrounded; // 바퀴가 지면에 닿았는지 확인
+
         bool accelerating = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
+        bool decelerating = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
 
         if (accelerating)
         {
-            currentMotorSpeed += accelerationRate * Time.deltaTime * boostMultiplier;
-            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed * boostMultiplier);
+            currentMotorSpeed += accelerationRate * Time.deltaTime;
+            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed);
+        }
+        else if (decelerating)
+        {
+            currentMotorSpeed -= decelerationRate * Time.deltaTime; // 뒤로 가는 속도 설정
+            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed);
         }
         else
         {
@@ -53,6 +71,34 @@ public class carmovement : MonoBehaviour
         }
 
         ApplyMotor(currentMotorSpeed);
+
+        if (!isOnGround)
+        {
+            if (accelerating)
+            {
+                // 회전력 증가
+                currentAngularVelocity += rotationForce * Time.deltaTime * (currentMotorSpeed / maxMotorSpeed);
+
+                // 회전 속도 제한 (최대 회전 속도 설정)
+                currentAngularVelocity = Mathf.Clamp(currentAngularVelocity, -maxRotationSpeed, maxRotationSpeed);
+            }
+            else if (decelerating)
+            {
+                // 반대 방향으로 회전력 증가
+                currentAngularVelocity -= rotationForce * Time.deltaTime * (currentMotorSpeed / maxMotorSpeed);
+
+                // 회전 속도 제한 (최대 회전 속도 설정)
+                currentAngularVelocity = Mathf.Clamp(currentAngularVelocity, -maxRotationSpeed, maxRotationSpeed);
+            }
+            else
+            {
+                // 감속할 때 회전 속도 점차적으로 0으로 감소
+                currentAngularVelocity = Mathf.MoveTowards(currentAngularVelocity, 0f, rotationForce * Time.deltaTime);
+            }
+
+            // `angularVelocity` 적용하여 차량 회전
+            rb.angularVelocity = currentAngularVelocity;
+        }
     }
 
     void ApplyMotor(float speed)

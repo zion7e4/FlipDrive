@@ -4321,8 +4321,14 @@ MonoBehaviour:
   accelerationRate: -5000
   decelerationRate: 1000
   maxTorque: 8000
+  rotationForce: 200
+  maxRotationSpeed: 300
   currentMotorSpeed: 0
+  currentAngularVelocity: 0
   isBoosting: 0
+  isOnGround: 0
+  wheelLeft: {fileID: 0}
+  wheelRight: {fileID: 0}
 --- !u!235 &2020106400 stripped
 WheelJoint2D:
   m_CorrespondingSourceObject: {fileID: 8249288393683169412, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
@@ -4333,6 +4339,20 @@ WheelJoint2D:
   m_CorrespondingSourceObject: {fileID: 5443167197653671534, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
   m_PrefabInstance: {fileID: 3297594164218408986}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020106407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019002957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45ffd74f8f6bc8048aa1b9107bd66432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frontPoint: {fileID: 0}
+  downForceStrength: 10
 --- !u!1001 &3297594164218408986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4403,6 +4423,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2020106398}
+    - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020106407}
   m_SourcePrefab: {fileID: 100100000, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

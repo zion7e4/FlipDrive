@@ -9,10 +9,7 @@ public class CarMovement_Motor : MonoBehaviour
 
     private void Start()
     {
-        if (carMovement == null)
-        {
-            carMovement = GetComponent<carmovement>();
-        }
+        carMovement = GetComponent<carmovement>();
     }
 
     void Update()
