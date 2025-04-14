@@ -20,7 +20,7 @@ public class carmovement : MonoBehaviour
     [Header("Debug Info")]
     [Tooltip("현재 모터 회전 속도 (음수일수록 빠름)")]
     public float currentMotorSpeed = 0f;
-    [SerializeField] 
+    [SerializeField]
     private float currentAngularVelocity = 0f; // 현재 회전 속도
     public bool isBoosting = false;
 
