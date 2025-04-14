@@ -21,16 +21,22 @@ public class carmovement : MonoBehaviour
     [SerializeField] private float currentAngularVelocity = 0f; // 현재 회전 속도
 
     private Rigidbody2D rb;
-    public bool isGrounded = false; // 지면에 닿았는지 여부
+
+    public bool isOnGround;
+    public isGroundCheck wheelLeft;
+    public isGroundCheck wheelRight;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rb.freezeRotation = false; // 회전 가능하도록 설정
+        rb.centerOfMass = new Vector2(0.1f, -0.6f); // 차량의 중심을 아래로 설정
     }
 
     void Update()
     {
+        isOnGround = wheelLeft.isGrounded || wheelRight.isGrounded; // 바퀴가 지면에 닿았는지 확인
+
         bool accelerating = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
         bool decelerating = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
 
@@ -51,7 +57,7 @@ public class carmovement : MonoBehaviour
 
         ApplyMotor(currentMotorSpeed);
 
-        if(!isGrounded)
+        if(!isOnGround)
         {
             if (accelerating)
             {
@@ -77,8 +83,7 @@ public class carmovement : MonoBehaviour
 
             // `angularVelocity` 적용하여 차량 회전
             rb.angularVelocity = currentAngularVelocity;
-        }
-        
+        }   
     }
 
     void ApplyMotor(float speed)
@@ -94,23 +99,5 @@ public class carmovement : MonoBehaviour
 
         frontWheelJoint.useMotor = true;
         backWheelJoint.useMotor = true;
-    }
-
-    // 지면에 닿았는지 여부 확인 (OnCollisionEnter2D 사용)
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true; // 지면에 닿았으면 회전 불가능
-        }
-    }
-
-    // 충돌이 끝났을 때 지면에 떨어진 경우
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false; // 지면에서 떨어지면 회전 가능
-        }
     }
 }
