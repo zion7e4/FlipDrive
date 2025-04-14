@@ -5,7 +5,13 @@ public class CarBooster : MonoBehaviour
     public carmovement carMovement;
 
     [SerializeField]
-    private float boosterGauge = 20f; // 현재 부스터 게이지
+    private float boosterGauge;
+    public float BoosterGauge
+    { 
+        set => boosterGauge = Mathf.Clamp(value, 0f, maxboosterGauge);
+        get => boosterGauge;
+    }// 현재 부스터 게이지
+
     [SerializeField]
     private float maxboosterGauge = 20f; // 최대 부스터 게이지
     private float gaugeConsumption; // 게이지 소모량
@@ -22,7 +28,7 @@ public class CarBooster : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && boosterGauge > 0 && !isBoostActive)
+        if (Input.GetKey(KeyCode.LeftShift) && BoosterGauge > 0 && !isBoostActive)
         {
             // 부스터 등급 결정
             DetermineBoostTier();
@@ -44,7 +50,7 @@ public class CarBooster : MonoBehaviour
 
     private void DetermineBoostTier()
     {
-        float gaugePercent = (boosterGauge / maxboosterGauge) * 100f;
+        float gaugePercent = (BoosterGauge / maxboosterGauge) * 100f;
 
         if (gaugePercent >= 100f)
         {
@@ -74,10 +80,10 @@ public class CarBooster : MonoBehaviour
         speedMultiplier = multiplier;
         boostDuration = duration;
 
-        if (boosterGauge >= gaugeConsumption)
+        if (BoosterGauge >= gaugeConsumption)
         {
             // 게이지를 소모하고 부스터 활성화
-            boosterGauge -= gaugeConsumption;
+            BoosterGauge -= gaugeConsumption;
             isBoostActive = true;
             boostEndTime = Time.time + boostDuration;
             carMovement.isBoosting = true;
@@ -98,6 +104,6 @@ public class CarBooster : MonoBehaviour
 
     public float GetCurrentGaugePercent()
     {
-        return (boosterGauge / maxboosterGauge) * 100f;
+        return (BoosterGauge / maxboosterGauge) * 100f;
     }
 }

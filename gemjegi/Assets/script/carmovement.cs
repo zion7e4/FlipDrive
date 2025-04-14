@@ -32,6 +32,10 @@ public class carmovement : MonoBehaviour
     private float boostMultiplier = 1f; // 기본 속도 배율
     private float targetMultiplier = 1f; // 목표 속도 배율
 
+    [SerializeField]
+    private int rotatecount = 0; // 회전수
+    private float rotateangle = 0f; // 회전 각도
+
     public CarBooster carBooster;
 
     private void Start()
@@ -103,6 +107,16 @@ public class carmovement : MonoBehaviour
             // `angularVelocity` 적용하여 차량 회전
             rb.angularVelocity = currentAngularVelocity;
         }
+
+        rotateCount();
+
+        if (isOnGround && rotatecount > 0)
+        {
+            carBooster.BoosterGauge += (rotatecount * 5f);
+
+            rotatecount = 0;
+            rotateangle = 0f;
+        }
     }
 
     void ApplyMotor(float speed)
@@ -118,6 +132,18 @@ public class carmovement : MonoBehaviour
 
         frontWheelJoint.useMotor = true;
         backWheelJoint.useMotor = true;
+    }
+
+    public void rotateCount()
+    {
+        float currentRotateAngle = rb.rotation; // 현재 회전각도
+        rotateangle += Mathf.Abs(rb.angularVelocity * Time.deltaTime);
+
+        if (rotateangle >= 360f) // 회전각도가 360도 이상일 때
+        {
+            rotatecount += 1; // 회전수 + 1
+            rotateangle -= 360f; // 회전각도 - 360도
+        }
     }
 
     public void ApplyBoostMultiplier(float multiplier)
