@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 321480597}
   m_Layer: 0
   m_Name: testmap
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4277,6 +4277,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &665420423
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 665420424}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &665420424
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665420423}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.59, y: -0.35, z: -6.91421}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2020106390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1019002957 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
@@ -4314,21 +4345,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfeeb7e0700eb34792ec15054ec0912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carBooster: {fileID: 2020106398}
   frontWheelJoint: {fileID: 2020106401}
   backWheelJoint: {fileID: 2020106400}
-  maxMotorSpeed: -5000
-  accelerationRate: -5000
+  maxMotorSpeed: -3500
+  accelerationRate: -3500
   decelerationRate: 1000
-  maxTorque: 8000
+  maxTorque: 6000
   rotationForce: 200
   maxRotationSpeed: 300
+  multiplierRestoreSpeed: 0.5
   currentMotorSpeed: 0
   currentAngularVelocity: 0
   isBoosting: 0
   isOnGround: 0
-  wheelLeft: {fileID: 0}
-  wheelRight: {fileID: 0}
+  wheelLeft: {fileID: 2020106412}
+  wheelRight: {fileID: 2020106412}
+  carBooster: {fileID: 2020106398}
 --- !u!235 &2020106400 stripped
 WheelJoint2D:
   m_CorrespondingSourceObject: {fileID: 8249288393683169412, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
@@ -4351,8 +4383,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45ffd74f8f6bc8048aa1b9107bd66432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frontPoint: {fileID: 0}
+  frontPoint: {fileID: 665420424}
   downForceStrength: 10
+--- !u!114 &2020106412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1019002957}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac6df8bec23c1a4f8328bbe80492dca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGrounded: 0
 --- !u!1001 &3297594164218408986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4415,7 +4460,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6562381117644540611, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 665420424}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       insertIndex: -1
@@ -4426,6 +4474,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2020106407}
+    - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020106412}
   m_SourcePrefab: {fileID: 100100000, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
