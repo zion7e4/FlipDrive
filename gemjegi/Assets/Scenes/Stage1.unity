@@ -1799,13 +1799,69 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948940513}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45a591b538629f841a5c204ac0460861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   frontPoint: {fileID: 109114811}
   downForceStrength: 70
+--- !u!235 &2020106402 stripped
+WheelJoint2D:
+  m_CorrespondingSourceObject: {fileID: 5443167197653671534, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+  m_PrefabInstance: {fileID: 3297594164218408986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &2020106405 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 885303007430193814, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+  m_PrefabInstance: {fileID: 3297594164218408986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020106408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948940513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fac98d24776ae438cf48fa0a8ed0b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carMovement: {fileID: 0}
+  boosterGauge: 0
+  maxboosterGauge: 20
+--- !u!114 &2020106409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948940513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aa9b6e6386bd3844a86b1b20892864e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseMaxSpeed: 5
+  baseAcceleration: 4
+  motorSpeed: -4000
+  maxTorque: 3600
+  currentMotorSpeed: 0
+  motorLerpSpeed: 5
+  frontWheelJoint: {fileID: 2020106402}
+  backWheelJoint: {fileID: 2020106402}
+  carBody: {fileID: 2020106405}
+  rotationForce: 20
+  maxRotationSpeed: 300
+  multiplierRestoreSpeed: 0.5
+  isOnGround: 0
+  wheelLeft: {fileID: 266197729}
+  wheelRight: {fileID: 1712455141}
+  boostMultiplier: 1
+  targetMultiplier: 1
+  isBoosting: 0
+  carBooster: {fileID: 0}
 --- !u!1001 &3297594164218408986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1918,7 +1974,8 @@ PrefabInstance:
       propertyPath: m_Suspension.m_Frequency
       value: 10
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2961636230564367585, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6562381117644540611, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
@@ -1928,6 +1985,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2020106398}
+    - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020106408}
+    - targetCorrespondingSourceObject: {fileID: 2063557789852434228, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2020106409}
     - targetCorrespondingSourceObject: {fileID: 8696653787491114524, guid: ad368e802c0e5d7469e81382d72431f2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1712455141}

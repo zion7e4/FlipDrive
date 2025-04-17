@@ -2,102 +2,173 @@ using UnityEngine;
 
 public class carmovement : MonoBehaviour
 {
-    [Header("Wheel Joint Settings")]
+    [Header("기본 스탯")]
+    public float baseMaxSpeed = 5.0f;
+    public float baseAcceleration = 4.0f;
+
+    public float motorSpeed;
+    public float maxTorque;
+    public float currentMotorSpeed = 0f;
+    public float motorLerpSpeed = 5f;
+
     public WheelJoint2D frontWheelJoint;
     public WheelJoint2D backWheelJoint;
+    public Rigidbody2D carBody;
 
-    [Header("Speed Settings")]
-    [Tooltip("모터최대속도")]
-    public float maxMotorSpeed = -5000f;
-    public float accelerationRate = -5000f;
-    public float decelerationRate = 1000f;
-    public float maxTorque = 8000f;
-    public float rotationForce = 200f; // 회전력
-    public float maxRotationSpeed = 300f; // 최대 회전 속도
+    [Header("회전 및 부스터")]
+    public float rotationForce = 20f;
+    public float maxRotationSpeed = 300f;
+    public float multiplierRestoreSpeed = 0.5f;
 
-    [Header("Debug Info")]
-    [Tooltip("현재 모터 회전 속도 (음수일수록 빠름)")]
-    [SerializeField] private float currentMotorSpeed = 0f;
-    [SerializeField] private float currentAngularVelocity = 0f; // 현재 회전 속도
-
-    private Rigidbody2D rb;
+    private float currentAngularVelocity = 0f; // 현재 회전 속도
 
     public bool isOnGround;
     public isGroundCheck wheelLeft;
     public isGroundCheck wheelRight;
 
+    public float boostMultiplier = 1f;
+    public float targetMultiplier = 1f;
+    public bool isBoosting = false;
+
+    private float rotateangle = 0f;
+    private int rotatecount = 0;
+    public CarBooster carBooster;
+
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.freezeRotation = false; // 회전 가능하도록 설정
-        rb.centerOfMass = new Vector2(0.1f, -0.6f); // 차량의 중심을 아래로 설정
+        ApplyDesignStats();
+        AdjustCenterOfMass();
+        AdjustSuspension();
     }
 
-    void Update()
+    void ApplyDesignStats()
     {
-        isOnGround = wheelLeft.isGrounded || wheelRight.isGrounded; // 바퀴가 지면에 닿았는지 확인
+        motorSpeed = -baseMaxSpeed * 800f; // 반드시 음수!
+        maxTorque = (baseMaxSpeed + baseAcceleration) * 400f;
+        currentMotorSpeed = 0f;
+    }
+
+    void AdjustCenterOfMass()
+    {
+        if (carBody != null)
+        {
+            carBody.centerOfMass = new Vector2(0.2f, -0.7f); // 붕 뜨는 거 방지
+        }
+    }
+
+    void AdjustSuspension()
+    {
+        JointSuspension2D suspension = frontWheelJoint.suspension;
+        suspension.dampingRatio = 3.0f;
+        suspension.frequency = 8.0f;
+
+        frontWheelJoint.suspension = suspension;
+        backWheelJoint.suspension = suspension;
+    }
+
+    void FixedUpdate()
+    {
+        isOnGround = wheelLeft.isGrounded || wheelRight.isGrounded;
+        bool isAirborne = !wheelLeft.isGrounded && !wheelRight.isGrounded;
 
         bool accelerating = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
         bool decelerating = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
 
+        float targetSpeed = 0f;
+
         if (accelerating)
         {
-            currentMotorSpeed += accelerationRate * Time.deltaTime;
-            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed);
+            targetSpeed = motorSpeed * boostMultiplier; // 음수면 앞으로 감
         }
         else if (decelerating)
         {
-            currentMotorSpeed -= decelerationRate * Time.deltaTime; // 뒤로 가는 속도 설정
-            currentMotorSpeed = Mathf.Max(currentMotorSpeed, maxMotorSpeed);
-        }
-        else
-        {
-            currentMotorSpeed = Mathf.MoveTowards(currentMotorSpeed, 0f, decelerationRate * Time.deltaTime);
+            targetSpeed = -motorSpeed; // 뒤로 가기
         }
 
-        ApplyMotor(currentMotorSpeed);
+        currentMotorSpeed = Mathf.Lerp(currentMotorSpeed, targetSpeed, Time.fixedDeltaTime * motorLerpSpeed);
 
-        if(!isOnGround)
+        if (!isBoosting && boostMultiplier > 1f)
+            boostMultiplier = Mathf.MoveTowards(boostMultiplier, targetMultiplier, multiplierRestoreSpeed * Time.fixedDeltaTime);
+
+        SetMotor(accelerating || decelerating);
+
+        // 공중 회전
+        if (!isOnGround)
         {
+            float direction = 0f;
             if (accelerating)
             {
-                // 회전력 증가
-                currentAngularVelocity += rotationForce * Time.deltaTime * (currentMotorSpeed / maxMotorSpeed);
-
-                // 회전 속도 제한 (최대 회전 속도 설정)
-                currentAngularVelocity = Mathf.Clamp(currentAngularVelocity, -maxRotationSpeed, maxRotationSpeed);
+                direction = 1f;
             }
             else if (decelerating)
             {
-                // 반대 방향으로 회전력 증가
-                currentAngularVelocity -= rotationForce * Time.deltaTime * (currentMotorSpeed / maxMotorSpeed);
-
-                // 회전 속도 제한 (최대 회전 속도 설정)
-                currentAngularVelocity = Mathf.Clamp(currentAngularVelocity, -maxRotationSpeed, maxRotationSpeed);
+                direction = -1f;
             }
-            else
+
+            if (direction != 0f)
             {
-                // 감속할 때 회전 속도 점차적으로 0으로 감소
-                currentAngularVelocity = Mathf.MoveTowards(currentAngularVelocity, 0f, rotationForce * Time.deltaTime);
+                float angularBoost = rotationForce * direction * Time.fixedDeltaTime;
+                carBody.angularVelocity = Mathf.Clamp(carBody.angularVelocity + angularBoost, -maxRotationSpeed, maxRotationSpeed);
+                carBody.AddTorque(rotationForce * direction, ForceMode2D.Force);
             }
+        }
+        /*else
+        {
+            // 회전 감속
+            carBody.angularVelocity = Mathf.MoveTowards(carBody.angularVelocity, 0f, rotationForce * Time.fixedDeltaTime);
+        }*/
 
-            // `angularVelocity` 적용하여 차량 회전
-            rb.angularVelocity = currentAngularVelocity;
-        }   
+        RotateCount();
+
+        if (isOnGround && rotatecount > 0)
+        {
+            carBooster.BoosterGauge += (rotatecount * 5f);
+            rotatecount = 0;
+            rotateangle = 0f;
+        }
     }
 
-    void ApplyMotor(float speed)
+    void SetMotor(bool on)
     {
         JointMotor2D motor = new JointMotor2D
         {
-            motorSpeed = speed,
+            motorSpeed = currentMotorSpeed,
             maxMotorTorque = maxTorque
         };
 
-        frontWheelJoint.motor = motor;
-        backWheelJoint.motor = motor;
+        frontWheelJoint.useMotor = false;
+        backWheelJoint.useMotor = on;
 
-        frontWheelJoint.useMotor = true;
-        backWheelJoint.useMotor = true;
+        if (on)
+        {
+            backWheelJoint.motor = motor;
+        }
+    }
+
+    void RotateCount()
+    {
+        rotateangle += Mathf.Abs(carBody.angularVelocity * Time.fixedDeltaTime);
+
+        if (rotateangle >= 360f)
+        {
+            rotatecount += 1;
+            rotateangle -= 360f;
+        }
+    }
+
+    public void ApplyBoostMultiplier(float multiplier)
+    {
+        boostMultiplier = multiplier;
+        isBoosting = true;
+    }
+
+    public void ResetBoostMultiplier()
+    {
+        isBoosting = false;
+    }
+
+    void OnValidate()
+    {
+        ApplyDesignStats();
     }
 }
