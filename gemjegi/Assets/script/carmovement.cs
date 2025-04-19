@@ -16,7 +16,7 @@ public class carmovement : MonoBehaviour
     public Rigidbody2D carBody;
 
     [Header("회전 및 부스터")]
-    public float rotationForce = 20f;
+    public float rotationForce = 30f;
     public float maxRotationSpeed = 300f;
     public float multiplierRestoreSpeed = 0.5f;
 
