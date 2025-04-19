@@ -80,10 +80,10 @@ public class carmovement : MonoBehaviour
         {
             targetSpeed = motorSpeed * boostMultiplier; // 음수면 앞으로 감
         }
-        else if (decelerating)
+        /*else if (decelerating)
         {
             targetSpeed = -motorSpeed; // 뒤로 가기
-        }
+        }*/
 
         currentMotorSpeed = Mathf.Lerp(currentMotorSpeed, targetSpeed, Time.fixedDeltaTime * motorLerpSpeed);
 
