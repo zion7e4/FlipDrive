@@ -36,6 +36,7 @@ public class carmovement : MonoBehaviour
 
     void Start()
     {
+
         ApplyDesignStats();
         AdjustCenterOfMass();
         AdjustSuspension();
