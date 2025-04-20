@@ -183,5 +183,19 @@ public class carmovement : MonoBehaviour
 
             SceneManager.LoadScene("GameOver");
         }
+
+        if(collision.CompareTag("Finish"))
+        {
+            LastPlayedStage = SceneManager.GetActiveScene().name;
+
+            if(LastPlayedStage == "Stage1" || LastPlayedStage == "Stage2")
+            {
+                SceneManager.LoadScene("GameClear");
+            }
+            else if (LastPlayedStage == "Stage3")
+            {
+                SceneManager.LoadScene("GameFinish");
+            }
+        }
     }
 }
