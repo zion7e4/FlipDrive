@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class carmovement : MonoBehaviour
 {
@@ -170,5 +171,17 @@ public class carmovement : MonoBehaviour
     void OnValidate()
     {
         ApplyDesignStats();
+    }
+
+    public static string LastPlayedStage;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            LastPlayedStage = SceneManager.GetActiveScene().name;
+
+            SceneManager.LoadScene("GameOver");
+        }
     }
 }

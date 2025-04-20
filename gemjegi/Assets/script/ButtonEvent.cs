@@ -20,4 +20,20 @@ public class ButtonEvent : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void GameStart()
+    {
+        if(Lobby.IsStageSelected)
+        {
+            SceneManager.LoadScene(Lobby.SelectedStage);
+        }
+    }
+
+    public void OnReplayButtonClicked()
+    {
+        if(!string.IsNullOrEmpty(carmovement.LastPlayedStage))
+        {
+            SceneManager.LoadScene(carmovement.LastPlayedStage);
+        }
+    }
 }
