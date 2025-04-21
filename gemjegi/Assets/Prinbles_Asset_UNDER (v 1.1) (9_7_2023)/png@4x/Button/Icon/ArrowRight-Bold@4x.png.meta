@@ -160,7 +160,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ArrowRight-Bold@4x_0: 736346861451105559
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
