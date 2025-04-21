@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class carmovement : MonoBehaviour
 {
@@ -160,5 +161,31 @@ public class carmovement : MonoBehaviour
     public void ResetBoostMultiplier()
     {
         isBoosting = false; // 부스터 종료 상태로 설정
+    }
+
+    public static string LastPlayedStage;
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle"))
+        {
+            LastPlayedStage = SceneManager.GetActiveScene().name;
+
+            SceneManager.LoadScene("GameOver");
+        }
+
+        if (collision.CompareTag("Finish"))
+        {
+            LastPlayedStage = SceneManager.GetActiveScene().name;
+
+            if (LastPlayedStage == "Stage1" || LastPlayedStage == "Stage2")
+            {
+                SceneManager.LoadScene("GameClear");
+            }
+            else if (LastPlayedStage == "Stage3")
+            {
+                SceneManager.LoadScene("GameFinish");
+            }
+        }
     }
 }
