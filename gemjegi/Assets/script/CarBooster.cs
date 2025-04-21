@@ -12,8 +12,8 @@ public class CarBooster : MonoBehaviour
         get => boosterGauge;
     }// 현재 부스터 게이지
 
-    [SerializeField]
-    private float maxboosterGauge = 0f; // 최대 부스터 게이지
+    
+    public float maxboosterGauge = 0f; // 최대 부스터 게이지
     private float gaugeConsumption; // 게이지 소모량
     private float speedMultiplier; // 속도 배율
     private float boostDuration; // 부스터 지속 시간
