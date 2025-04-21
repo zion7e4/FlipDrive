@@ -21,13 +21,13 @@ public class ButtonEvent : MonoBehaviour
 #endif
     }
 
-    public void GameStart()
+    /*public void GameStart()
     {
         if(Lobby.IsStageSelected)
         {
             SceneManager.LoadScene(Lobby.SelectedStage);
         }
-    }
+    }*/
 
     public void OnReplayButtonClicked()
     {
