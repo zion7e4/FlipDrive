@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 44566113069647580}
   - component: {fileID: 235526166709037685}
   - component: {fileID: 885303007430193814}
-  - component: {fileID: 2961636230564367585}
   - component: {fileID: 1290525387720735785}
   - component: {fileID: 5443167197653671534}
   - component: {fileID: 8249288393683169412}
@@ -140,25 +139,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &2961636230564367585
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2063557789852434228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfeeb7e0700eb34792ec15054ec0912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frontWheelJoint: {fileID: 5443167197653671534}
-  backWheelJoint: {fileID: 8249288393683169412}
-  maxMotorSpeed: -3500
-  accelerationRate: -3500
-  decelerationRate: 1000
-  maxTorque: 5000
-  currentMotorSpeed: 0
 --- !u!61 &1290525387720735785
 BoxCollider2D:
   m_ObjectHideFlags: 0
