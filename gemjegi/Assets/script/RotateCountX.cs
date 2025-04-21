@@ -23,7 +23,7 @@ public class RotateCountX : MonoBehaviour
     {
         if (!carmovement.isOnGround && carmovement.rotatecountforui >= 1)
         {
-            rotateCountX.text = "Rotate Count x";
+            rotateCountX.text = "FLIP!";
             groundTimer = 0f;
         }
         else

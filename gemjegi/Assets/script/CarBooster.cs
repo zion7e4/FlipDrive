@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using TMPro;
 public class CarBooster : MonoBehaviour
 {
     public carmovement carMovement;
@@ -20,6 +20,8 @@ public class CarBooster : MonoBehaviour
 
     private bool isBoostActive = false; // 부스터 활성화 상태
     private float boostEndTime; // 부스터 종료 시간 (Time.time)
+    public GameObject TextBoosterOn;
+    public TextMeshProUGUI TextMeshProUGUI;
 
     private void Awake()
     {
@@ -40,7 +42,9 @@ public class CarBooster : MonoBehaviour
             {
                 // 부스터 종료
                 EndBoost();
+                TextBoosterOn.SetActive(false);
             }
+
         }
         else
         {
@@ -90,6 +94,26 @@ public class CarBooster : MonoBehaviour
 
             // 속도 배율 적용
             carMovement.ApplyBoostMultiplier(speedMultiplier);
+        }
+        if (duration == 2.5f)
+        {
+            TextMeshProUGUI.text = "XL BOOSTER ON!";
+            TextBoosterOn.SetActive(true);
+        }
+        else if (duration == 2f)
+        {
+            TextMeshProUGUI.text = "L BOOSTER ON!";
+            TextBoosterOn.SetActive(true);
+        }
+        else if (duration == 1.5f)
+        {
+            TextMeshProUGUI.text = "M BOOSTER ON!";
+            TextBoosterOn.SetActive(true);
+        }
+        else if (duration == 1f)
+        {
+            TextMeshProUGUI.text = "S BOOSTER ON!";
+            TextBoosterOn.SetActive(true);
         }
     }
 

@@ -24,7 +24,7 @@ public class RotateCountUI : MonoBehaviour
     {
         if(!carmovement.isOnGround && carmovement.rotatecountforui >= 1)
         {
-            rotateCountUI.text = carmovement.rotatecountforui.ToString();
+            rotateCountUI.text = "x" + carmovement.rotatecountforui.ToString();
             groundTimer = 0f;
         }
         else
