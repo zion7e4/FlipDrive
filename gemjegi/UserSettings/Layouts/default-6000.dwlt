@@ -340,8 +340,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Hierarchy\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 732
-    y: 87
+    x: 0
+    y: 24
     width: 198
     height: 578
   m_SerializedDataModeController:
@@ -406,8 +406,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 931
-    y: 87
+    x: 200
+    y: 24
     width: 639
     height: 578
   m_SerializedDataModeController:
@@ -966,7 +966,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: 0.4594186, y: 1.3263705, z: 181.42918}
     speed: 2
-    m_Value: {x: 0.44582748, y: 1.1237394, z: 170.61511}
+    m_Value: {x: 0.4594186, y: 1.3263705, z: 181.42918}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1018,7 +1018,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 15.838183
     speed: 2
-    m_Value: 15.156157
+    m_Value: 15.838183
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1261,7 +1261,7 @@ MonoBehaviour:
   m_Zoom: -1
   m_ScrollPosition: {x: 0, y: 0}
   m_SelectedObject: {fileID: 0}
-  m_SelectedSpriteRectGUID: 305f1d083b4d6daa0800000000000000
+  m_SelectedSpriteRectGUID: 00000000000000000000000000000000
   m_LastUsedModuleTypeName: UnityEditor.U2D.Sprites.SpriteFrameModule
 --- !u!114 &18
 MonoBehaviour:
@@ -1284,8 +1284,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Project\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 732
-    y: 691
+    x: 0
+    y: 628
     width: 839
     height: 287
   m_SerializedDataModeController:
@@ -1329,7 +1329,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 79}
     m_SelectedIDs: 0eb70000
     m_LastClickedID: 46862
-    m_ExpandedIDs: 0000000012b4000000ca9a3b
+    m_ExpandedIDs: 0000000012b40000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1509,8 +1509,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1572
-    y: 87
+    x: 841
+    y: 24
     width: 339
     height: 891
   m_SerializedDataModeController:
