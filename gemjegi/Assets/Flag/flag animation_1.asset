@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: Tilesheet - WOODS_29
+  m_Name: flag animation_1
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 1631498617, guid: b425613db706e0a49821a35253ec9db1, type: 3}
+  m_Sprite: {fileID: 1022228012, guid: dc8aa0af926530945948c5553bfa1a98, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
