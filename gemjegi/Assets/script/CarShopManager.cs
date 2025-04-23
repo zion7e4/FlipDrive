@@ -22,26 +22,30 @@ public class CarShopManager : MonoBehaviour
 
     public Car[] cars;
 
-    [Header("현재 보유 코인")]
+    //[Header("현재 보유 코인")]
     public int coins = 0; // 인스펙터에서 조절 가능
 
     private int currentIndex = 0;
-    //PlayerPrefs.DeleteAll();
+
     private void Start()
     {
+        //PlayerPrefs.DeleteAll();
         // 첫 번째 차는 항상 언락
         if (PlayerPrefs.GetInt("Car_0", 0) == 0)
             PlayerPrefs.SetInt("Car_0", 1);
 
-        // 첫 번째 차 자동 장착 (처음 실행 시에만)
-        if (!PlayerPrefs.HasKey("EquippedCar"))
-            PlayerPrefs.SetInt("EquippedCar", 0);
-
-        // 두 번째 차 가격 강제 설정
+        // 1번 차 가격 설정
         if (cars.Length > 1)
             cars[1].price = 50;
 
-        // 데이터 로드
+        // 0번 차 자동 장착
+        if (!PlayerPrefs.HasKey("EquippedCar"))
+            PlayerPrefs.SetInt("EquippedCar", 0);
+
+        // 코인 값 불러오기 명확화
+        coins = PlayerPrefs.GetInt("Coins", coins);
+
+        // 데이터 로드 및 UI 갱신
         LoadCarData();
         UpdateUI();
     }
@@ -80,19 +84,25 @@ public class CarShopManager : MonoBehaviour
         UpdateUI();
     }
 
+    private void Update()
+    {
+        coinText.text = "My coin : " + coins.ToString();
+    }
+
     private void UpdateUI()
     {
+        coins = PlayerPrefs.GetInt("Coins", coins);
         Car currentCar = cars[currentIndex];
         carDisplay.sprite = currentCar.carImage;
 
         // 코인 텍스트 표시
-        coinText.text = "My coin : " + coins.ToString();
+        //coinText.text = "My coin : " + coins.ToString();
 
         // 언락 여부 확인
         bool isUnlocked = currentCar.isUnlocked || PlayerPrefs.GetInt("Car_" + currentIndex, 0) == 1;
 
         priceText.text = currentCar.price.ToString() + " Coins";
-        
+
         // 버튼 표시 조건
         if (isUnlocked)
         {
@@ -113,7 +123,6 @@ public class CarShopManager : MonoBehaviour
             buyButton.gameObject.SetActive(true);
             equipButton.gameObject.SetActive(false);
         }
-
     }
 
     private void LoadCarData()
@@ -123,5 +132,12 @@ public class CarShopManager : MonoBehaviour
         {
             cars[i].isUnlocked = PlayerPrefs.GetInt("Car_" + i, 0) == 1;
         }
+    }
+
+    // 다른 스크립트에서 호출하여 코인 갱신
+    public void UpdateCoinCount(int newCoinCount)
+    {
+        coins = newCoinCount;
+        UpdateUI();
     }
 }
