@@ -1154,6 +1154,7 @@ GameObject:
   - component: {fileID: 357459989}
   - component: {fileID: 357459991}
   - component: {fileID: 357459992}
+  - component: {fileID: 357459993}
   m_Layer: 0
   m_Name: Stage02
   m_TagString: Untagged
@@ -42271,6 +42272,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4f3a4ad5696b3fb449d756eb20ff22da, type: 2}
   - {fileID: 11400000, guid: 521dfe8939151244c94dc770a227f08d, type: 2}
   - {fileID: 11400000, guid: e0cf394eddba3594bbb124fe8bc9274b, type: 2}
+--- !u!114 &357459993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 357459987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 761e345f6085b9e44802191152241864, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 0}
+  breakableTiles:
+  - {fileID: 11400000, guid: 4f3a4ad5696b3fb449d756eb20ff22da, type: 2}
+  - {fileID: 11400000, guid: 521dfe8939151244c94dc770a227f08d, type: 2}
+  - {fileID: 11400000, guid: e0cf394eddba3594bbb124fe8bc9274b, type: 2}
+  destroyDelay: 1
 --- !u!1001 &409350743
 PrefabInstance:
   m_ObjectHideFlags: 0
