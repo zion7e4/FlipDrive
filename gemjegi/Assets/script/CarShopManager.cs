@@ -68,15 +68,17 @@ public class CarShopManager : MonoBehaviour
     {
         Car currentCar = cars[currentIndex];
 
-        if (coins >= currentCar.price && !currentCar.isUnlocked)
+        int availableCoins = CoinManager.Instance.GetCoins();
+
+        if (availableCoins >= currentCar.price && !currentCar.isUnlocked)
         {
-            coins -= currentCar.price;
+            CoinManager.Instance.SpendCoin(currentCar.price); // 코인 사용
             currentCar.isUnlocked = true;
             PlayerPrefs.SetInt("Car_" + currentIndex, 1);
-            PlayerPrefs.SetInt("Coins", coins);
             UpdateUI();
         }
     }
+
 
     public void EquipCar()
     {
