@@ -1,10 +1,22 @@
 fileFormatVersion: 2
-guid: ea4bc2a83b38cf14181c3046aa5d73c4
+guid: dc8aa0af926530945948c5553bfa1a98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6136483574820244221
-    second: car-body_0
+      213: -6494656711642010645
+    second: flag animation_0
+  - first:
+      213: -4341209307699571989
+    second: flag animation_1
+  - first:
+      213: 4625237377173308275
+    second: flag animation_2
+  - first:
+      213: -455622095734552585
+    second: flag animation_3
+  - first:
+      213: 6712714840332784938
+    second: flag animation_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,23 +125,111 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: car-body_0
+      name: flag animation_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 691
-        height: 194
+        x: 5
+        y: 2
+        width: 32
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 305f1d083b4d6daa0800000000000000
-      internalID: -6136483574820244221
+      spriteID: 02a3a47d2b2379048b2831a079076bf9
+      internalID: 322978237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag animation_1
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 2
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34a77c4ea084c804890285581702a4c4
+      internalID: 1022228012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag animation_2
+      rect:
+        serializedVersion: 2
+        x: 125
+        y: 2
+        width: 31
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c3f96f4cf524cd4c825d9855789d4f2
+      internalID: -745031358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag animation_3
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 2
+        width: 32
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70d6dfe586eaf7d46800017713ed6a05
+      internalID: -246632852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: flag animation_4
+      rect:
+        serializedVersion: 2
+        x: 245
+        y: 2
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f7b8311853ed26049811534c8edfcb58
+      internalID: 447170483
       vertices: []
       indices: 
       edges: []
@@ -138,7 +238,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0807acbe362131741833914a70287aa1
+    spriteID: f9c7c741f81130c4f8b3c25aef4e364f
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      car-body_0: -6136483574820244221
+      flag animation_0: 322978237
+      flag animation_1: 1022228012
+      flag animation_2: -745031358
+      flag animation_3: -246632852
+      flag animation_4: 447170483
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

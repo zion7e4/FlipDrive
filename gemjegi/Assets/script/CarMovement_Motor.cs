@@ -2,18 +2,11 @@ using UnityEngine;
 
 public class CarMovement_Motor : MonoBehaviour
 {
-    public carmovement carMovement;
-
     public WheelJoint2D frontWheelJoint;
     public WheelJoint2D backWheelJoint;
 
-    private void Start()
-    {
-        if (carMovement == null)
-        {
-            carMovement = GetComponent<carmovement>();
-        }
-    }
+    public float motorSpeed = -1000f; // 음수면 앞으로 감
+    public float maxTorque = 1000f;
 
     void Update()
     {
@@ -26,8 +19,8 @@ public class CarMovement_Motor : MonoBehaviour
     {
         JointMotor2D motor = new JointMotor2D
         {
-            motorSpeed = carMovement.currentMotorSpeed,
-            maxMotorTorque = carMovement.maxTorque
+            motorSpeed = motorSpeed,
+            maxMotorTorque = maxTorque
         };
 
         frontWheelJoint.useMotor = on;
