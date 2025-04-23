@@ -43632,6 +43632,23 @@ WheelJoint2D:
   m_CorrespondingSourceObject: {fileID: 6987538896082576972, guid: f5990bd398db87643bf4212843800571, type: 3}
   m_PrefabInstance: {fileID: 1313862658}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1106758060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 957258702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14943ebd36349540970a477157a38f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 1354300487}
+  breakableTiles:
+  - {fileID: 11400000, guid: 4f3a4ad5696b3fb449d756eb20ff22da, type: 2}
+  - {fileID: 11400000, guid: 521dfe8939151244c94dc770a227f08d, type: 2}
+  - {fileID: 11400000, guid: e0cf394eddba3594bbb124fe8bc9274b, type: 2}
 --- !u!4 &1153877639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5930245820274046489, guid: f763943aea0778c4bb45297555b993c2, type: 3}
@@ -44079,6 +44096,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4968419478038355795, guid: f5990bd398db87643bf4212843800571, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1106758057}
+    - targetCorrespondingSourceObject: {fileID: 4968419478038355795, guid: f5990bd398db87643bf4212843800571, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1106758060}
     - targetCorrespondingSourceObject: {fileID: 7609590134272310515, guid: f5990bd398db87643bf4212843800571, type: 3}
       insertIndex: -1
       addedObject: {fileID: 513120803}
@@ -45812,7 +45832,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinCount: 0
-  coinText: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
