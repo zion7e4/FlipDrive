@@ -3,11 +3,35 @@ using UnityEngine.SceneManagement;
 
 public class CarGameOver : MonoBehaviour
 {
-    public float flipAngleThreshold = 75f; // Â÷°¡ ¾ó¸¶³ª ±â¿ï¾îÁ³À» ¶§ °ÔÀÓ¿À¹ö·Î º¼Áö
-    public float checkDelay = 2f; // ÀÏÁ¤ ½Ã°£ µÚÁıÈù »óÅÂ°¡ Áö¼ÓµÉ °æ¿ì¿¡¸¸ °ÔÀÓ¿À¹ö
+    public float flipAngleThreshold = 75f;
+    public float checkDelay = 1f;
+
+    public float stuckSpeedThreshold = 0.1f;
+
+    public float checkInterval = 2f; // ìœ„ì¹˜ ë¹„êµ ì£¼ê¸°
+    private float checkTimer = 0f;
+
     private float flipTimer = 0f;
 
+    private Vector3 lastPosition;
+    private Rigidbody rb;
+
+    public float distanceMoved;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+        lastPosition = transform.position;
+    }
+
     void Update()
+    {
+        carmovement.LastPlayedStage = SceneManager.GetActiveScene().name;
+        CheckFlip();
+        CheckStuck();
+    }
+
+    void CheckFlip()
     {
         float angle = Vector3.Angle(Vector3.up, transform.up);
 
@@ -21,8 +45,28 @@ public class CarGameOver : MonoBehaviour
         }
         else
         {
-            flipTimer = 0f; // ´Ù½Ã Á¤»óÀÚ¼¼·Î µ¹¾Æ¿À¸é Å¸ÀÌ¸Ó ¸®¼Â
+            flipTimer = 0f;
         }
+    }
 
+    void CheckStuck()
+    {
+        checkTimer += Time.deltaTime;
+
+        bool isMovingKeyPressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
+
+        if (checkTimer >= checkInterval)
+        {
+            distanceMoved = Vector3.Distance(lastPosition, transform.position);
+
+            if (isMovingKeyPressed && distanceMoved < stuckSpeedThreshold)
+            {
+                Debug.Log("ê²Œì„ ì˜¤ë²„: ì°¨ê°€ ì›€ì§ì´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+                SceneManager.LoadScene("GameOver");
+            }
+
+            lastPosition = transform.position;
+            checkTimer = 0f;
+        }
     }
 }
