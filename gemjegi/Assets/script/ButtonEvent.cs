@@ -3,11 +3,31 @@ using UnityEngine.SceneManagement;
 
 public class ButtonEvent : MonoBehaviour
 {
+    public void OnReplayButtonClicked()
+    {
+        if (!string.IsNullOrEmpty(carmovement.LastPlayedStage))
+        {
+            SceneManager.LoadScene(carmovement.LastPlayedStage);
+        }
+    }
+
+    public void NextStage()
+    {
+        if (carmovement.LastPlayedStage == "Stage1")
+        {
+            SceneManager.LoadScene("Stage2");
+        }
+        else if (carmovement.LastPlayedStage == "Stage2")
+        {
+            SceneManager.LoadScene("Stage3");
+        }
+    }
     public void SceneLoad(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
 
+<<<<<<< HEAD
     public void OnReplayButtonClicked()
     {
         if (!string.IsNullOrEmpty(carmovement.LastPlayedStage))
@@ -28,6 +48,8 @@ public class ButtonEvent : MonoBehaviour
         }
     }
 
+=======
+>>>>>>> heeyoung-1-2-1
     public void QuitGame()
     {
         Debug.Log("게임 종료 시도됨");
