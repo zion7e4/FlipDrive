@@ -23,23 +23,30 @@ public class CarShopManager : MonoBehaviour
     public Car[] cars;
 
     [Header("현재 보유 코인")]
-    public int coins = 1000; // 인스펙터에서 조절 가능
+    public int coins = 0; // 인스펙터에서 조절 가능
 
     private int currentIndex = 0;
-
+    //PlayerPrefs.DeleteAll();
     private void Start()
     {
-        // 초기화 시 저장 데이터 삭제 (원할 경우만 활성화)
-        // PlayerPrefs.DeleteAll();
-
         // 첫 번째 차는 항상 언락
         if (PlayerPrefs.GetInt("Car_0", 0) == 0)
             PlayerPrefs.SetInt("Car_0", 1);
+
+        // 첫 번째 차 자동 장착 (처음 실행 시에만)
+        if (!PlayerPrefs.HasKey("EquippedCar"))
+            PlayerPrefs.SetInt("EquippedCar", 0);
+
+        // 두 번째 차 가격 강제 설정
+        if (cars.Length > 1)
+            cars[1].price = 50;
 
         // 데이터 로드
         LoadCarData();
         UpdateUI();
     }
+
+
 
     public void NextCar()
     {
@@ -56,10 +63,6 @@ public class CarShopManager : MonoBehaviour
     public void BuyCar()
     {
         Car currentCar = cars[currentIndex];
-
-        // 1번 인덱스 차는 구매 불가
-        if (currentIndex == 1 && PlayerPrefs.GetInt("Stage2Cleared", 0) == 0)
-            return;
 
         if (coins >= currentCar.price && !currentCar.isUnlocked)
         {
@@ -85,26 +88,11 @@ public class CarShopManager : MonoBehaviour
         // 코인 텍스트 표시
         coinText.text = "My coin : " + coins.ToString();
 
-        // Stage 2 클리어 시 1번 차 자동 언락
-        if (currentIndex == 1 && PlayerPrefs.GetInt("Stage2Cleared", 0) == 1)
-        {
-            currentCar.isUnlocked = true;
-            PlayerPrefs.SetInt("Car_1", 1);
-        }
-
         // 언락 여부 확인
         bool isUnlocked = currentCar.isUnlocked || PlayerPrefs.GetInt("Car_" + currentIndex, 0) == 1;
 
-        // 가격 or 조건 텍스트 설정
-        if (currentIndex == 1 && !isUnlocked)
-        {
-            priceText.text = "Stage 2 Clear";
-        }
-        else
-        {
-            priceText.text = currentCar.price.ToString() + " Coins";
-        }
-
+        priceText.text = currentCar.price.ToString() + " Coins";
+        
         // 버튼 표시 조건
         if (isUnlocked)
         {
@@ -122,16 +110,8 @@ public class CarShopManager : MonoBehaviour
         }
         else
         {
-            if (currentIndex == 1 && PlayerPrefs.GetInt("Stage2Cleared", 0) == 0)
-            {
-                buyButton.gameObject.SetActive(false);
-                equipButton.gameObject.SetActive(false);
-            }
-            else
-            {
-                buyButton.gameObject.SetActive(true);
-                equipButton.gameObject.SetActive(false);
-            }
+            buyButton.gameObject.SetActive(true);
+            equipButton.gameObject.SetActive(false);
         }
 
     }

@@ -108654,6 +108654,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4968419478038355795, guid: f5990bd398db87643bf4212843800571, type: 3}
+      insertIndex: 4
+      addedObject: {fileID: 8561671303190067947}
+    - targetCorrespondingSourceObject: {fileID: 4968419478038355795, guid: f5990bd398db87643bf4212843800571, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8561671303190067940}
     - targetCorrespondingSourceObject: {fileID: 4968419478038355795, guid: f5990bd398db87643bf4212843800571, type: 3}
@@ -108807,6 +108810,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontPoint: {fileID: 1683192273}
   downForceStrength: 10
+--- !u!212 &8561671303190067946 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8437399217892868372, guid: f5990bd398db87643bf4212843800571, type: 3}
+  m_PrefabInstance: {fileID: 1061983895229312931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8561671303190067947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1061987708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d742f8ab091ef4042b457fb51c8898a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carSpriteRenderer: {fileID: 8561671303190067946}
+  carSprites:
+  - {fileID: 1598543105571004906, guid: 58e604d9f350718449480c2f158defdb, type: 3}
+  - {fileID: -5047272929303454744, guid: d8f174340c33fc94794ccc80a2abdf0a, type: 3}
 --- !u!1001 &9174345460442605407
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coinCount = 0; // 현재 코인 수
+    //public int coinCount = 0; // 현재 코인 수
     public Text coinText;     // UI 텍스트 연결
+    public int coinCount = PlayerPrefs.GetInt("Coins", 0);
 
     private void Start()
     {

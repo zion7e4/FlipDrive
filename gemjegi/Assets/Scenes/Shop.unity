@@ -807,16 +807,13 @@ MonoBehaviour:
   nextButton: {fileID: 1521829362}
   prevButton: {fileID: 1862097850}
   cars:
-  - carImage: {fileID: 2161594082026839980, guid: cd71bdacea6c55440a5e740a69adac1b, type: 3}
-    price: 0
-    isUnlocked: 0
   - carImage: {fileID: 1598543105571004906, guid: 58e604d9f350718449480c2f158defdb, type: 3}
     price: 0
     isUnlocked: 0
   - carImage: {fileID: -5047272929303454744, guid: d8f174340c33fc94794ccc80a2abdf0a, type: 3}
     price: 50
     isUnlocked: 0
-  coins: 1000
+  coins: 0
 --- !u!4 &482355510
 Transform:
   m_ObjectHideFlags: 0
