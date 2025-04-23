@@ -20,4 +20,24 @@ public class ButtonEvent : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    public void OnReplayButtonClicked()
+    {
+        if (!string.IsNullOrEmpty(carmovement.LastPlayedStage))
+        {
+            SceneManager.LoadScene(carmovement.LastPlayedStage);
+        }
+    }
+
+    public void NextStage()
+    {
+        if (carmovement.LastPlayedStage == "Stage1")
+        {
+            SceneManager.LoadScene("Stage2");
+        }
+        else if (carmovement.LastPlayedStage == "Stage2")
+        {
+            SceneManager.LoadScene("Stage3");
+        }
+    }
 }
