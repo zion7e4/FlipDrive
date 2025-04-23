@@ -178,11 +178,11 @@ public class carmovement : MonoBehaviour
         {
             LastPlayedStage = SceneManager.GetActiveScene().name;
 
-            if (LastPlayedStage == "Stage1" || LastPlayedStage == "Stage2")
+            if (LastPlayedStage == "Stage1")
             {
                 SceneManager.LoadScene("GameClear");
             }
-            else if (LastPlayedStage == "Stage3")
+            else if (LastPlayedStage == "Stage2")
             {
                 SceneManager.LoadScene("GameFinish");
             }
