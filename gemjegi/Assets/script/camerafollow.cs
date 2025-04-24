@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class camerafollow : MonoBehaviour
 {
-    [Header("Target Settings")]
+    [Header("타겟 세팅")]
     [Tooltip("따라갈 타겟 (예: Car)")]
     public Transform target;
 
-    [Header("Follow Settings")]
+    [Header("움직임 세팅")]
     [Tooltip("카메라가 따라갈 때의 부드러움 정도")]
     public float smoothSpeed = 0.125f;
 

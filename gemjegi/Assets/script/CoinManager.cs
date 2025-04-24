@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoinManager : MonoBehaviour
 {
@@ -51,5 +52,21 @@ public class CoinManager : MonoBehaviour
     public int GetCoins()
     {
         return coinCount;
+    }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        coinText = GameObject.Find("CoinText")?.GetComponent<TextMeshProUGUI>();
+        UpdateUI();
     }
 }
