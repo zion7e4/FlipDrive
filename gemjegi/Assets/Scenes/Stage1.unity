@@ -104438,11 +104438,6 @@ PrefabInstance:
       addedObject: {fileID: 1764149283}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dddf32b145ca094899ec222fcf7f648, type: 3}
---- !u!1 &136489658 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2856818962268702598, guid: 84fa85c6de49afc4ab84492dc1510c4e, type: 3}
-  m_PrefabInstance: {fileID: 1430710322}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &171258049
 GameObject:
   m_ObjectHideFlags: 0
@@ -108208,7 +108203,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7510410877686277068, guid: 84fa85c6de49afc4ab84492dc1510c4e, type: 3}
   m_PrefabInstance: {fileID: 1430710322}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1588763403}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -108470,6 +108465,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f763943aea0778c4bb45297555b993c2, type: 3}
+--- !u!1 &1588763403 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7277008658891200783, guid: 84fa85c6de49afc4ab84492dc1510c4e, type: 3}
+  m_PrefabInstance: {fileID: 1430710322}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1590311340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109463,7 +109463,7 @@ MonoBehaviour:
   carMovement: {fileID: 8561671303190067940}
   boosterGauge: 0
   maxboosterGauge: 20
-  TextBoosterOn: {fileID: 136489658}
+  TextBoosterOn: {fileID: 1588763403}
   TextMeshProUGUI: {fileID: 1513874768}
 --- !u!114 &8561671303190067940
 MonoBehaviour:
