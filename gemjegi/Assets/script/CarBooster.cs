@@ -7,12 +7,12 @@ public class CarBooster : MonoBehaviour
     [SerializeField]
     private float boosterGauge;
     public float BoosterGauge
-    { 
+    {
         set => boosterGauge = Mathf.Clamp(value, 0f, maxboosterGauge); // 부스터 게이지가 최대 부스터 게이지를 초과하지 않도록 설정
         get => boosterGauge;
     }// 현재 부스터 게이지
 
-    
+
     public float maxboosterGauge = 20f; // 최대 부스터 게이지
     private float gaugeConsumption; // 게이지 소모량
     private float speedMultiplier; // 속도 배율

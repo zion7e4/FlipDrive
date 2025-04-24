@@ -109302,11 +109302,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7650316956633100652, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 200.97
+      value: -17.95
       objectReference: {fileID: 0}
     - target: {fileID: 7650316956633100652, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.86
+      value: -0.24
       objectReference: {fileID: 0}
     - target: {fileID: 7650316956633100652, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_LocalPosition.z
@@ -109477,25 +109477,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cfeeb7e0700eb34792ec15054ec0912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseMaxSpeed: 5
+  baseAcceleration: 4
+  motorSpeed: -4000
+  maxTorque: 3600
+  currentMotorSpeed: 0
+  motorLerpSpeed: 5
   frontWheelJoint: {fileID: 8561671303190067934}
   backWheelJoint: {fileID: 8561671303190067934}
-  maxMotorSpeed: -5000
-  accelerationRate: -5000
-  decelerationRate: 1000
-  maxTorque: 8000
+  carBody: {fileID: 8561671303190067951}
   rotationForce: 200
   maxRotationSpeed: 300
   multiplierRestoreSpeed: 0.5
-  currentMotorSpeed: 0
-  currentAngularVelocity: 0
-  isBoosting: 0
   isOnGround: 0
   wheelLeft: {fileID: 614013771}
   wheelRight: {fileID: 1544198583}
-  rotatecount: 0
+  boostMultiplier: 1
+  targetMultiplier: 1
+  isBoosting: 0
   rotatecountforui: 0
-  rotateangle: 0
-  currentRotateAngle: 0
   carBooster: {fileID: 8561671303190067939}
 --- !u!114 &8561671303190067941
 MonoBehaviour:
@@ -109549,6 +109549,11 @@ MonoBehaviour:
   stuckSpeedThreshold: 0.1
   checkInterval: 2
   distanceMoved: 0
+--- !u!50 &8561671303190067951 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7191789350626759235, guid: f5990bd398db87643bf4212843800571, type: 3}
+  m_PrefabInstance: {fileID: 1061983895229312931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9174345460442605407
 PrefabInstance:
   m_ObjectHideFlags: 0
