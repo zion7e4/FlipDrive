@@ -298,7 +298,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FlipDriveTitle_0: -8381564471231597608
+      FlipDriveTitle_1: 4369218933263945284
+      FlipDriveTitle_2: 7881457679221950898
+      FlipDriveTitle_3: -7518731671208300095
+      FlipDriveTitle_4: 9107238238715602185
+      FlipDriveTitle_5: -4378191322884743691
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
