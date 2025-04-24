@@ -108,7 +108,7 @@ public class carmovement : MonoBehaviour
                 currentAngularVelocity = Mathf.MoveTowards(currentAngularVelocity, 0f, rotationForce * Time.deltaTime);
             }
 
-            // `angularVelocity` 적용하여 차량 회전
+            // angularVelocity 적용하여 차량 회전
             rb.angularVelocity = currentAngularVelocity;
 
         }
@@ -178,11 +178,11 @@ public class carmovement : MonoBehaviour
         {
             LastPlayedStage = SceneManager.GetActiveScene().name;
 
-            if (LastPlayedStage == "Stage1")
+            if (LastPlayedStage == "Stage1" || LastPlayedStage == "Stage2")
             {
                 SceneManager.LoadScene("GameClear");
             }
-            else if (LastPlayedStage == "Stage2")
+            else if (LastPlayedStage == "Stage3")
             {
                 SceneManager.LoadScene("GameFinish");
             }
