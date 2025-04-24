@@ -53,7 +53,7 @@ public class CarGameOver : MonoBehaviour
     {
         checkTimer += Time.deltaTime;
 
-        bool isMovingKeyPressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow);
+        bool isMovingKeyPressed = Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow);
 
         if (checkTimer >= checkInterval)
         {
