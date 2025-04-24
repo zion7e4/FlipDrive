@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class CoinManager : MonoBehaviour
 {
     public static CoinManager Instance; // 싱글톤 인스턴스
     public int coinCount = 0;
-    //public Text coinText;
+    public TextMeshProUGUI coinText; // UI 텍스트 연결 (Coins: 0 형태)
 
     private void Awake()
     {
@@ -22,7 +23,7 @@ public class CoinManager : MonoBehaviour
     private void Start()
     {
         coinCount = PlayerPrefs.GetInt("Coins", 0);
-        //UpdateUI();
+        UpdateUI();
     }
 
     public void AddCoin(int amount = 1)
@@ -30,7 +31,7 @@ public class CoinManager : MonoBehaviour
         coinCount += amount;
         PlayerPrefs.SetInt("Coins", coinCount);
         PlayerPrefs.Save();
-        //UpdateUI();
+        UpdateUI();
     }
 
     public void SpendCoin(int amount)
@@ -38,14 +39,14 @@ public class CoinManager : MonoBehaviour
         coinCount -= amount;
         PlayerPrefs.SetInt("Coins", coinCount);
         PlayerPrefs.Save();
-        //UpdateUI();
+        UpdateUI();
     }
 
-    /*private void UpdateUI()
+    private void UpdateUI()
     {
         if (coinText != null)
             coinText.text = "Coins: " + coinCount;
-    }*/
+    }
 
     public int GetCoins()
     {
