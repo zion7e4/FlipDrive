@@ -109482,6 +109482,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2529994296513991207, guid: f5990bd398db87643bf4212843800571, type: 3}
+      propertyPath: m_Anchor.x
+      value: -2.2500324
+      objectReference: {fileID: 0}
+    - target: {fileID: 2529994296513991207, guid: f5990bd398db87643bf4212843800571, type: 3}
+      propertyPath: m_Anchor.y
+      value: -1.0000013
+      objectReference: {fileID: 0}
     - target: {fileID: 4968419478038355795, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_Name
       value: Car
@@ -109492,11 +109500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7650316956633100652, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.95
+      value: -19.57
       objectReference: {fileID: 0}
     - target: {fileID: 7650316956633100652, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.24
+      value: -1.37
       objectReference: {fileID: 0}
     - target: {fileID: 7650316956633100652, guid: f5990bd398db87643bf4212843800571, type: 3}
       propertyPath: m_LocalPosition.z
